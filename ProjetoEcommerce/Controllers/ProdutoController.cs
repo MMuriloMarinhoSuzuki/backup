@@ -10,10 +10,10 @@ namespace ProjetoEcommerce.Controllers
 
         public ProdutoController(ClienteRepositorio clienteRepositorio)
         {
-            _produtoRepositorio = produtoRepositorio;
+            _produtoRepositorio = ProdutoRepositorio;
         }
 
-        public IActionResult Index()
+        public IActionResult Produtos()
         {
             return View(_produtoRepositorio.TodosProdutos());
         }
@@ -41,10 +41,10 @@ namespace ProjetoEcommerce.Controllers
 
         /* Action para exibir o formulário de edição de um cliente específico (via Requisição GET)
          Este método recebe o 'id' do cliente a ser editado como parâmetro.*/
-        public IActionResult EditarCliente(int id)
+        public IActionResult EditarProduto(int id)
         {
             // Obtém o cliente específico do repositório usando o ID fornecido.
-            var cliente = _produtoRepositorio.ObterCliente(id);
+            var produto = _produtoRepositorio.ObterProduto(id);
 
             // Verifica se o cliente foi encontrado. É uma boa prática tratar casos onde o ID é inválido.
             if (produto == null)
@@ -65,10 +65,10 @@ namespace ProjetoEcommerce.Controllers
         /*[Bind] para especificar explicitamente quais propriedades do objeto Cliente podem ser vinculadas a partir dos dados do formulário.
         Isso é uma boa prática de segurança para evitar o overposting (onde um usuário malicioso pode enviar dados para propriedades
         que você não pretendia que fossem alteradas)*/
-        public IActionResult EditarCliente(int id, [Bind("CodProd, NomeProd, DescProd, QuantProd, PrecoProd")] Cliente cliente)
+        public IActionResult EditarProduto(int id, [Bind("CodProd, NomeProd, DescProd, QuantProd, PrecoProd")] Produto produto)
         {
             // Verifica se o ID fornecido na rota corresponde ao ID do cliente no modelo.
-            if (id != produto.CodCli)
+            if (id != produto.CodProd)
             {
                 return BadRequest(); // Retorna um erro 400 se os IDs não corresponderem.
             }
@@ -78,7 +78,7 @@ namespace ProjetoEcommerce.Controllers
                 try
                 {
                     // Verifica se o cliente com o Codigo fornecido existe no repositório.
-                    if (_produtoRepositorio.Atualizar(cliente))
+                    if (_produtoRepositorio.Atualizar(produto))
                     {
                         //redireciona para a pagina index quando alterar
                         return RedirectToAction(nameof(Index));
@@ -97,10 +97,10 @@ namespace ProjetoEcommerce.Controllers
         }
 
 
-        public IActionResult ExcluirCliente(int id)
+        public IActionResult ExcluirProduto(int id)
         {
             // Obtém o cliente específico do repositório usando o Codigo fornecido.
-            _produtoRepositorio.Excluir(id);
+            _produtoRepositorio.ExcluirProd(id);
             // Retorna a View de confirmação de exclusão, passando o cliente como modelo.
             return RedirectToAction(nameof(Index));
         }
