@@ -8,10 +8,11 @@ namespace ProjetoEcommerce.Controllers
     {
         private readonly ProdutoRepositorio _produtoRepositorio;
 
-        public ProdutoController(ClienteRepositorio clienteRepositorio)
+        public ProdutoController(ProdutoRepositorio produtoRepositorio)
         {
-            _produtoRepositorio = ProdutoRepositorio;
+            _produtoRepositorio = produtoRepositorio;
         }
+
 
         public IActionResult Produtos()
         {
