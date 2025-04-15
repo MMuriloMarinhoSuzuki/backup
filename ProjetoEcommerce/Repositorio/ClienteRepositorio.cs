@@ -25,7 +25,7 @@ namespace ProjetoEcommerce.Repositorio
                                                                                                                                                  // Adiciona um parâmetro para o nome, definindo seu tipo e valor
                     cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = cliente.NomeCli;
                     // Adiciona um parâmetro para o telefone, definindo seu tipo e valor
-                    cmd.Parameters.Add("@telefone", MySqlDbType.VarChar).Value = cliente.TelCli;
+                    cmd.Parameters.Add("@telefone", MySqlDbType.VarChar).Value = cliente.TeleCli;
                     // Adiciona um parâmetro para o email, definindo seu tipo e valor
                     cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = cliente.EmailCli;
                     // Executa o comando SQL de inserção e retorna o número de linhas afetadas
@@ -52,7 +52,7 @@ namespace ProjetoEcommerce.Repositorio
                     // Adiciona um parâmetro para o novo nome, definindo seu tipo e valor
                     cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = cliente.NomeCli;
                     // Adiciona um parâmetro para o novo telefone, definindo seu tipo e valor
-                    cmd.Parameters.Add("@telefone", MySqlDbType.VarChar).Value = cliente.TelCli;
+                    cmd.Parameters.Add("@telefone", MySqlDbType.VarChar).Value = cliente.TeleCli;
                     // Adiciona um parâmetro para o novo email, definindo seu tipo e valor
                     cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = cliente.EmailCli;
                     // Executa o comando SQL de atualização e retorna o número de linhas afetadas
@@ -103,7 +103,7 @@ namespace ProjetoEcommerce.Repositorio
                                     {
                                         CodCli = Convert.ToInt32(dr["CodCli"]), // Converte o valor da coluna "codigo" para inteiro
                                         NomeCli = ((string)dr["NomeCli"]), // Converte o valor da coluna "nome" para string
-                                        TelCli = ((string)dr["TelCli"]), // Converte o valor da coluna "telefone" para string
+                                        TeleCli = ((string)dr["TelCli"]), // Converte o valor da coluna "telefone" para string
                                         EmailCli = ((string)dr["EmailCli"]), // Converte o valor da coluna "email" para string
                                     });
                     }
@@ -144,7 +144,7 @@ namespace ProjetoEcommerce.Repositorio
                         // Preenche as propriedades do objeto Cliente com os valores da linha atual
                         cliente.CodCli = Convert.ToInt32(dr["CodCli"]);//propriedade Codigo e convertendo para int
                         cliente.NomeCli = (string)(dr["NomeCli"]); // propriedade Nome e passando string
-                        cliente.TelCli = (string)(dr["TelCli"]); //propriedade telefone e passando string
+                        cliente.TeleCli = (string)(dr["TelCli"]); //propriedade telefone e passando string
                         cliente.EmailCli = (string)(dr["EmailCli"]); //propriedade email e passando string
                     }
                     // Retorna o objeto Cliente encontrado (ou um objeto com valores padrão se não encontrado)
