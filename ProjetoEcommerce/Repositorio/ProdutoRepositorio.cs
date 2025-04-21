@@ -18,14 +18,25 @@ namespace ProjetoEcommerce.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into Produto (NomeProd,DescProd,QuantProd,PrecoProd) values (@NomeProd, @DescProd, @QuantProd, @PrecoProd)", conexao);
+
+                // Cria um novo comando SQL para inserção de dados
+                MySqlCommand cmd = new MySqlCommand("insert into Produto (NomeProd, DescProd, QuantProd, PrecoProd) values (@NomeProd, @DescProd, @QuantProd, @PrecoProd)", conexao);
+
+                // Limpa os parâmetros do comando caso já existam
+                cmd.Parameters.Clear();
+
+                // Adiciona os parâmetros ao comando
                 cmd.Parameters.Add("@NomeProd", MySqlDbType.VarChar).Value = produto.NomeProd;
                 cmd.Parameters.Add("@DescProd", MySqlDbType.VarChar).Value = produto.DescProd;
                 cmd.Parameters.Add("@QuantProd", MySqlDbType.Int32).Value = produto.QuantProd;
                 cmd.Parameters.Add("@PrecoProd", MySqlDbType.Double).Value = produto.PrecoProd;
+
+                // Executa o comando de inserção
                 cmd.ExecuteNonQuery();
+
                 conexao.Close();
             }
+
 
         }
 
