@@ -37,7 +37,7 @@ namespace ProjetoEcommerce.Controllers
             _produtoRepositorio.Cadastrar(produto);
 
             //redireciona para pagina Index 'nameof(Index)' garante que o nome da Action seja usado corretamente,
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Produtos));
         }
 
         /* Action para exibir o formulário de edição de um cliente específico (via Requisição GET)
