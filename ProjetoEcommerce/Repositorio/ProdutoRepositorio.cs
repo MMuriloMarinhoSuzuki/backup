@@ -18,15 +18,15 @@ namespace ProjetoEcommerce.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into cliente (NomeProd,DescProd,QuantProd,PrecoProd) values (@nomeProd, @Descricao, @Quantidade, @Preco)", conexao); // @: PARAMETRO
-                                                                                                                                                 // Adiciona um parâmetro para o nome, definindo seu tipo e valor
-                cmd.Parameters.Add("@nomeProd", MySqlDbType.VarChar).Value = produto.NomeProd;
-                cmd.Parameters.Add("@Descricao", MySqlDbType.VarChar).Value = produto.DescProd;
-                cmd.Parameters.Add("@Quantidade", MySqlDbType.Int32).Value = produto.QuantProd;
-                cmd.Parameters.Add("@Preco", MySqlDbType.Double).Value = produto.PrecoProd;
-                //cmd.ExecuteNonQuery();
+                MySqlCommand cmd = new MySqlCommand("insert into Produto (NomeProd,DescProd,QuantProd,PrecoProd) values (@NomeProd, @DescProd, @QuantProd, @PrecoProd)", conexao);
+                cmd.Parameters.Add("@NomeProd", MySqlDbType.VarChar).Value = produto.NomeProd;
+                cmd.Parameters.Add("@DescProd", MySqlDbType.VarChar).Value = produto.DescProd;
+                cmd.Parameters.Add("@QuantProd", MySqlDbType.Int32).Value = produto.QuantProd;
+                cmd.Parameters.Add("@PrecoProd", MySqlDbType.Double).Value = produto.PrecoProd;
+                cmd.ExecuteNonQuery();
                 conexao.Close();
             }
+
         }
 
         // Método para Editar (atualizar) os dados de um cliente existente no banco de dados
@@ -37,7 +37,7 @@ namespace ProjetoEcommerce.Repositorio
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
                 {
                     conexao.Open();
-                    MySqlCommand cmd = new MySqlCommand("Update cliente set NomeProd=@nomeProd, DescProd=@Descricao, QuantProd=@Quatidade, PrecoProd=@Preco " + " where CodProd=@codigoProd ", conexao);
+                    MySqlCommand cmd = new MySqlCommand("Update Produto set NomeProd=@nomeProd, DescProd=@Descricao, QuantProd=@Quantidade, PrecoProd=@Preco " + " where CodProd=@codigoProd ", conexao);
                     cmd.Parameters.Add("@codigoProd", MySqlDbType.Int32).Value = produto.CodProd;
                     cmd.Parameters.Add("@nomeProd", MySqlDbType.VarChar).Value = produto.NomeProd;
                     cmd.Parameters.Add("@Descricao", MySqlDbType.VarChar).Value = produto.DescProd;
@@ -88,8 +88,8 @@ namespace ProjetoEcommerce.Repositorio
                                     CodProd = Convert.ToInt32(dr["CodProd"]), // Converte o valor da coluna "codigo" para inteiro
                                     NomeProd = ((string)dr["NomeProd"]), // Converte o valor da coluna "nome" para string
                                     DescProd = ((string)dr["DescProd"]), // Converte o valor da coluna "telefone" para string
-                                    //QuantProd = ((string)dr["QuantProd"]),
-                                    PrecoProd = ((string)dr["PrecoProd"]), // Converte o valor da coluna "email" para string
+                                    QuantProd = Convert.ToInt32(dr["QuantProd"]),
+                                    PrecoProd = Convert.ToDouble(dr["PrecoProd"]), // Converte o valor da coluna "email" para string
                                 });
                 }
                 // Retorna a lista de todos os clientes
