@@ -130,8 +130,8 @@ namespace ProjetoEcommerce.Repositorio
                     produto.CodProd = Convert.ToInt32(dr["CodProd"]);//propriedade Codigo e convertendo para int
                     produto.NomeProd = (string)(dr["NomeProd"]); // propriedade Nome e passando string
                     produto.DescProd = (string)(dr["DescProd"]); //propriedade telefone e passando string
-                    produto.QuantProd = (string)(dr["QuantProd"]);
-                    produto.PrecoProd = (string)(dr["PrecoProd"]); //propriedade email e passando string
+                    produto.QuantProd = Convert.ToInt32(dr["QuantProd"]);
+                    produto.PrecoProd = Convert.ToDouble(dr["PrecoProd"]); //propriedade email e passando string
                 }
                 // Retorna o objeto Cliente encontrado (ou um objeto com valores padrão se não encontrado)
                 return produto;
