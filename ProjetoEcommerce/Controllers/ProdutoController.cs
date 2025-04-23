@@ -82,7 +82,7 @@ namespace ProjetoEcommerce.Controllers
                     if (_produtoRepositorio.Atualizar(produto))
                     {
                         //redireciona para a pagina index quando alterar
-                        return RedirectToAction(nameof(Index));
+                        return RedirectToAction(nameof(Produtos));
                     }
                 }
                 catch (Exception)
@@ -103,7 +103,7 @@ namespace ProjetoEcommerce.Controllers
             // Obtém o cliente específico do repositório usando o Codigo fornecido.
             _produtoRepositorio.ExcluirProd(id);
             // Retorna a View de confirmação de exclusão, passando o cliente como modelo.
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Produtos));
         }
     }
 }
